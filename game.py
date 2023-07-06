@@ -1,7 +1,7 @@
 money = 0
 
 tools = {
-    "teeth": 1,
+    "teeth": 1
 }
 
 buy_tools = {
@@ -11,11 +11,13 @@ buy_tools = {
     "starving students": 500
 }
 
+winner = False
+
 while True:
     print(f"You currently have ${money}. Your available tools: {', '.join(tools.keys())}")
     cut = input("What tool would you like to cut grass with today? ")
 
-    if cut.lower() == "quit":
+    if cut == "quit":
         break
 
     if cut in tools:
@@ -59,9 +61,17 @@ while True:
                             tools[buy] = buy_tools[buy]
                         print(f"You bought {buy} for ${price}! ")
                         del buy_tools[buy]
+                        
             else:
                 print("Not enough money!")
         else:
             print("Not a valid tool!")
     else:
         print("Not a tool!")
+    
+    if money >= 1000 and "starving students" in tools.keys():
+        winner = True
+        break
+
+if winner:
+    print("Wow! You won the game!")
