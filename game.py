@@ -7,6 +7,7 @@ tools = {
 buy_tools = {
     "rusty scissors": 5,
     "push lawnmower": 25,
+    
 }
 
 while True:
@@ -36,7 +37,10 @@ while True:
             if money >= price:
                 if buy not in tools.keys():
                     money -= price
-                    tools[buy] = buy_tools[buy]
+                    if buy == "push lawnmower":
+                        tools[buy] = 50
+                    else:
+                        tools[buy] = buy_tools[buy]
                     print(f"You bought {buy} for ${price}! ")
                     del buy_tools[buy]
             else:
