@@ -7,7 +7,7 @@ tools = {
 buy_tools = {
     "rusty scissors": 5,
     "push lawnmower": 25,
-    
+    "battery-powered lawnmower": 250,
 }
 
 while True:
@@ -25,6 +25,8 @@ while True:
             print("rusty scissors is available for purchase! ")
         elif money >= 25 and "push lawnmower" not in tools.keys():
             print("push lawnmower is available for purchase! ")
+        elif money >= 250 and "battery-powered lawnmower" not in tools.keys():
+            print("battery-powered lawnmower is available for purchase! ")
         
     elif cut == "buy":
         print("Available tools for purchase:")
@@ -39,6 +41,8 @@ while True:
                     money -= price
                     if buy == "push lawnmower":
                         tools[buy] = 50
+                    elif buy == "battery-powered lawnmower":
+                        tools[buy] = 100
                     else:
                         tools[buy] = buy_tools[buy]
                     print(f"You bought {buy} for ${price}! ")
