@@ -28,9 +28,12 @@ while True:
         if buy in buy_tools:
             price = buy_tools[buy]
             if money >= price:
-                money -= price
-                tools[buy] = buy_tools[buy]
-                print(f"You bought {buy} for ${price}! ")
+                if buy not in tools.keys():
+                    money -= price
+                    tools[buy] = buy_tools[buy]
+                    print(f"You bought {buy} for ${price}! ")
+                else:
+                    print("You already  have that tool!")
             else:
                 print("Not enough money!")
         else:
