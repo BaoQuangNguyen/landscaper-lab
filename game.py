@@ -41,17 +41,24 @@ while True:
             price = buy_tools[buy]
             if money >= price:
                 if buy not in tools.keys():
-                    money -= price
-                    if buy == "push lawnmower":
-                        tools[buy] = 50
-                    elif buy == "battery-powered lawnmower":
-                        tools[buy] = 100
-                    elif buy == "starving students":
-                        tools[buy] = 250
+                    if buy == "push lawnmower" and "rusty scissors" not in tools.keys():
+                        print("You need to buy rusty scissors first!")
+                    elif buy == "battery-powered lawnmower" and "push lawnmower" not in tools.keys():
+                        print("You need to buy push lawnmower first!")
+                    elif buy == "starving students" and "battery-powered lawnmower" not in tools.keys():
+                        print("You need to buy battery-powered first!")
                     else:
-                        tools[buy] = buy_tools[buy]
-                    print(f"You bought {buy} for ${price}! ")
-                    del buy_tools[buy]
+                        money -= price
+                        if buy == "push lawnmower":
+                            tools[buy] = 50
+                        elif buy == "battery-powered lawnmower":
+                            tools[buy] = 100
+                        elif buy == "starving students":
+                            tools[buy] = 250
+                        else:
+                            tools[buy] = buy_tools[buy]
+                        print(f"You bought {buy} for ${price}! ")
+                        del buy_tools[buy]
             else:
                 print("Not enough money!")
         else:
