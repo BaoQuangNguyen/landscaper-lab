@@ -6,11 +6,11 @@ tools = {
 
 buy_tools = {
     "rusty scissors": 5,
+    "push lawnmower": 25,
 }
 
 while True:
     print(f"You currently have ${money}. Your available tools: {', '.join(tools.keys())}")
-    
     cut = input("What tool would you like to cut grass with today? ")
 
     if cut.lower() == "quit":
@@ -22,9 +22,15 @@ while True:
 
         if money >= 5 and "rusty scissors" not in tools.keys():
             print("rusty scissors is available for purchase! ")
-
+        elif money >= 25 and "push lawnmower" not in tools.keys():
+            print("push lawnmower is available for purchase! ")
+        
     elif cut == "buy":
-        buy = input("What tool would you like to buy? (rusty scissors) ")
+        print("Available tools for purchase:")
+        for tool, price in buy_tools.items():
+            print(f"{tool} (${price})")
+        buy = input("Enter the name of the tool you would like to buy: ")
+        
         if buy in buy_tools:
             price = buy_tools[buy]
             if money >= price:
@@ -32,8 +38,7 @@ while True:
                     money -= price
                     tools[buy] = buy_tools[buy]
                     print(f"You bought {buy} for ${price}! ")
-                else:
-                    print("You already  have that tool!")
+                    del buy_tools[buy]
             else:
                 print("Not enough money!")
         else:
